@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Baelyn Blackmore Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one drafting sheet. Sticky header, title block hero, a live parametric card, ruled sections. */
+:root{
+  --paper:#f3f4f1;
+  --ink:#16191d;
+  --muted:#575d65;
+  --rule:#c9ccc6;
+  --accent:#1a56c4;
+  --panel:#e9ebe6;
+  --f-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#12151a;--ink:#e9ebee;--muted:#9aa1ab;--rule:#2d333b;--accent:#7aa8ff;--panel:#1a1e25;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#12151a;--ink:#e9ebee;--muted:#9aa1ab;--rule:#2d333b;--accent:#7aa8ff;--panel:#1a1e25;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:30}
+.wrap{max-width:1040px;margin:0 auto}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:14px;border-bottom:1px solid var(--rule)}
+header.top nav{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+header.top a{font-family:var(--f-mono);font-size:13px;color:var(--ink);text-decoration:none}
+header.top a:hover{color:var(--accent)}
+#theme{font-family:var(--f-mono);font-size:12px;background:transparent;color:var(--ink);border:1px solid var(--rule);padding:3px 10px;cursor:pointer}
+#theme:hover{border-color:var(--ink)}
+
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;padding-block:64px 56px;align-items:end}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:13px;color:var(--accent);margin:0 0 20px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.status i{animation:none}html{scroll-behavior:auto}}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(42px,8.5vw,92px);line-height:.95;letter-spacing:-.02em;margin:0 0 20px;text-wrap:balance}
+.role{font-family:var(--f-display);font-weight:600;font-size:clamp(20px,3vw,26px);margin:0 0 16px}
+.lede{font-size:18px;max-width:52ch;margin:0 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-family:var(--f-mono);font-size:14px;text-decoration:none;padding:10px 20px;border:1.5px solid var(--ink);color:var(--ink);display:inline-block}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.tb{border:1.5px solid var(--ink);font-family:var(--f-mono);font-size:12.5px;min-width:0}
+.tb div{display:grid;grid-template-columns:96px minmax(0,1fr);border-top:1px solid var(--ink)}
+.tb div:first-child{border-top:0}
+.tb span{padding:7px 10px;overflow-wrap:anywhere}
+.tb span:first-child{color:var(--muted);border-right:1px solid var(--ink);text-transform:uppercase;letter-spacing:.06em}
+
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--rule)}
+.stats div{padding:22px 20px;border-left:1px solid var(--rule)}
+.stats div:first-child{border-left:0;padding-left:0}
+.stats b{display:block;font-family:var(--f-display);font-size:clamp(34px,5vw,52px);line-height:1;font-variant-numeric:tabular-nums}
+.stats span{color:var(--muted);font-size:14px}
+
+section{padding-block:64px 8px}
+section.last{padding-bottom:64px}
+h2{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,4vw,38px);line-height:1.1;margin:6px 0 28px;text-wrap:balance}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.grid3>div{padding:22px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);min-width:0}
+.grid3 h3{font-family:var(--f-display);font-weight:600;font-size:19px;margin:0 0 6px}
+.grid3 p{margin:0;color:var(--muted);font-size:15px}
+
+.proj{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{border:1px solid var(--rule);background:var(--panel);padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h3{font-family:var(--f-display);font-weight:600;font-size:22px;margin:0;line-height:1.2}
+.card p{margin:0;font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.tags span{font-family:var(--f-mono);font-size:12px;border:1px solid var(--rule);background:var(--paper);padding:2px 8px;color:var(--muted)}
+.more{margin:22px 0 0}
+
+.demo{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center}
+.drawing{background:var(--panel);border:1px solid var(--rule);padding:16px;min-width:0}
+.drawing svg{display:block;width:100%;height:auto}
+.dwg-line{stroke:var(--ink);fill:var(--paper);stroke-width:1.5}
+.dwg-dim{stroke:var(--accent);fill:none;stroke-width:1}
+.dwg-txt{fill:var(--accent);font-family:var(--f-mono);font-size:11px}
+.dwg-fill{fill:var(--ink)}
+.dwg-qr{fill:var(--ink)}
+.ctl{display:grid;gap:14px;margin:20px 0 0}
+.ctl label{display:grid;grid-template-columns:96px minmax(0,1fr) 64px;gap:12px;align-items:center;font-family:var(--f-mono);font-size:13px}
+.ctl output{text-align:right;color:var(--accent);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent);min-width:0}
+.hint{color:var(--muted);font-size:14px;margin:14px 0 0}
+
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:12px 0 0;list-style:none}
+.chips li{font-family:var(--f-mono);font-size:13px;border:1px solid var(--rule);background:var(--panel);padding:3px 10px}
+.cols h3{font-family:var(--f-display);font-weight:600;font-size:20px;margin:0}
+.cols p{margin:6px 0 0;max-width:56ch}
+
+.repo{display:block;border-top:1px solid var(--rule);padding-block:16px;color:var(--ink);text-decoration:none}
+.repo:last-child{border-bottom:1px solid var(--rule)}
+.repo strong{font-family:var(--f-mono);font-weight:500;color:var(--accent)}
+.repo p{margin:2px 0 0;color:var(--muted)}
+.repo:hover strong{text-decoration:underline}
+
+.cta{border:1.5px solid var(--ink);padding:clamp(24px,5vw,48px);display:grid;gap:20px}
+.cta h2{margin:0}
+.contact{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center}
+.addr{font-family:var(--f-mono);font-size:clamp(14px,2.4vw,18px);overflow-wrap:anywhere;user-select:all}
+button.copy{font-family:var(--f-mono);font-size:13px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);padding:8px 16px;cursor:pointer}
+button.copy:hover{background:var(--accent);border-color:var(--accent)}
+
+footer{padding-block:28px;margin-top:40px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:820px){
+  .hero,.demo,.cols,.proj{grid-template-columns:minmax(0,1fr)}
+  .hero{gap:28px;padding-block:36px}
+  .grid3{grid-template-columns:minmax(0,1fr)}
+  .stats div{padding:16px 12px}
+  .ctl label{grid-template-columns:80px minmax(0,1fr) 56px}
+}
+@media (max-width:480px){.stats{grid-template-columns:minmax(0,1fr)}.stats div{border-left:0;border-top:1px solid var(--rule);padding-left:0}.stats div:first-child{border-top:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="label">B. Blackmore / Portfolio</span>
+    <nav aria-label="Sections">
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#card">The card</a>
+      <a href="#tools">Tools</a>
+      <a href="#contact">Request a part</a>
+      <button id="theme" type="button" aria-label="Switch light or dark theme">Theme</button>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="status"><i></i>Taking client work</p>
+      <h1>Baelyn Blackmore</h1>
+      <p class="role">Freelance CAD designer and software engineer</p>
+      <p class="lede">I design custom parametric parts in OpenSCAD and deliver them as source files, ready to print. Over 25 parts delivered to clients.</p>
+      <div class="btns">
+        <a class="btn primary" href="#contact">Request a part</a>
+        <a class="btn" href="#projects">See projects</a>
+      </div>
+    </div>
+    <div class="tb" role="table" aria-label="Title block">
+      <div role="row"><span role="cell">Drawn by</span><span role="cell">B. Blackmore</span></div>
+      <div role="row"><span role="cell">Discipline</span><span role="cell">CAD, software</span></div>
+      <div role="row"><span role="cell">Languages</span><span role="cell">OpenSCAD, Python, C++</span></div>
+      <div role="row"><span role="cell">Materials</span><span role="cell">PLA+, PETG, TPU</span></div>
+      <div role="row"><span role="cell">Status</span><span role="cell">Taking client work</span></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div><b>25+</b><span>custom parts delivered to clients</span></div>
+    <div><b>2025</b><span>year I started freelance design</span></div>
+    <div><b>30 lb</b><span>held by my shelving across a 16 inch span</span></div>
+  </div>
+
+  <section id="services">
+    <p class="label">Services</p>
+    <h2>What I build for clients</h2>
+    <div class="grid3">
+      <div><h3>Custom parts</h3><p>Designed in OpenSCAD to your requirements.</p></div>
+      <div><h3>Print ready design</h3><p>Modelled in print orientation, with fits, tolerances and layer direction worked out first.</p></div>
+      <div><h3>Source files delivered</h3><p>Change one number and the whole part rebuilds.</p></div>
+      <div><h3>Multi part and multi color</h3><p>Snap fits, captive hardware, engraved text and two color inlays.</p></div>
+      <div><h3>Test printed</h3><p>Checked on FDM in PLA+, PETG or TPU before it goes out.</p></div>
+      <div><h3>Software and scripting</h3><p>Python and C++ for tools and automation.</p></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="label">Projects</p>
+    <h2>Parts that carry real loads</h2>
+    <div class="proj">
+      <article class="card">
+        <h3>Modular click lock shelving</h3>
+        <p>Holds at least 30 lb across an unsupported 16 inch span, matching US stud spacing. Panels join at each seam with printed click lock keys.</p>
+        <div class="tags"><span>30 lb load</span><span>16 in span</span><span>Click lock keys</span></div>
+      </article>
+      <article class="card">
+        <h3>Aquarium light holder</h3>
+        <p>Version 5 was tested until a whole rail tore off along a layer line. From version 6 on, four hidden M4 threaded rods run through the cross members, so steel carries the load and the nuts squeeze the layers together.</p>
+        <div class="tags"><span>Client work</span><span>6 versions</span><span>M4 steel rods</span></div>
+      </article>
+      <article class="card">
+        <h3>Parametric lattice basket</h3>
+        <p>Every strand's lean is capped at 45 degrees, the walls are matched to the printer's line width in code, and the basket is reinforced with 12 ribs, 5 hoop rings and a woven floor.</p>
+        <div class="tags"><span>45 degree cap</span><span>12 ribs</span><span>5 hoop rings</span></div>
+      </article>
+      <article class="card">
+        <h3>AI design agent</h3>
+        <p>One sentence in; editable OpenSCAD, a checked STL and G code for the printer out. Live demo available on request.</p>
+        <div class="tags"><span>Personal project</span><span>Python</span><span>OpenSCAD to G code</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="card">
+    <p class="label">The card I hand out</p>
+    <h2>Change one number, the part rebuilds</h2>
+    <div class="demo">
+      <div class="drawing">
+        <svg viewBox="0 0 360 240" role="img" aria-label="Live drawing of my printed business card with a scannable QR code to my GitHub profile">
+          <rect id="cardRect" x="30" y="30" width="300" height="180" rx="8" class="dwg-line"/>
+          <g class="dwg-fill" id="lines"></g>
+          <rect id="qrBg" x="0" y="0" width="10" height="10" fill="#fff"/>
+          <svg id="qr" x="0" y="0" width="10" height="10" viewBox="-2 -2 29 29"><rect x="-2" y="-2" width="29" height="29" fill="#fff"/><path d="M0,0h1v1h-1zM1,0h1v1h-1zM2,0h1v1h-1zM3,0h1v1h-1zM4,0h1v1h-1zM5,0h1v1h-1zM6,0h1v1h-1zM8,0h1v1h-1zM9,0h1v1h-1zM10,0h1v1h-1zM14,0h1v1h-1zM18,0h1v1h-1zM19,0h1v1h-1zM20,0h1v1h-1zM21,0h1v1h-1zM22,0h1v1h-1zM23,0h1v1h-1zM24,0h1v1h-1zM0,1h1v1h-1zM6,1h1v1h-1zM11,1h1v1h-1zM12,1h1v1h-1zM14,1h1v1h-1zM16,1h1v1h-1zM18,1h1v1h-1zM24,1h1v1h-1zM0,2h1v1h-1zM2,2h1v1h-1zM3,2h1v1h-1zM4,2h1v1h-1zM6,2h1v1h-1zM8,2h1v1h-1zM11,2h1v1h-1zM12,2h1v1h-1zM13,2h1v1h-1zM18,2h1v1h-1zM20,2h1v1h-1zM21,2h1v1h-1zM22,2h1v1h-1zM24,2h1v1h-1zM0,3h1v1h-1zM2,3h1v1h-1zM3,3h1v1h-1zM4,3h1v1h-1zM6,3h1v1h-1zM10,3h1v1h-1zM13,3h1v1h-1zM15,3h1v1h-1zM18,3h1v1h-1zM20,3h1v1h-1zM21,3h1v1h-1zM22,3h1v1h-1zM24,3h1v1h-1zM0,4h1v1h-1zM2,4h1v1h-1zM3,4h1v1h-1zM4,4h1v1h-1zM6,4h1v1h-1zM11,4h1v1h-1zM14,4h1v1h-1zM18,4h1v1h-1zM20,4h1v1h-1zM21,4h1v1h-1zM22,4h1v1h-1zM24,4h1v1h-1zM0,5h1v1h-1zM6,5h1v1h-1zM8,5h1v1h-1zM10,5h1v1h-1zM13,5h1v1h-1zM14,5h1v1h-1zM16,5h1v1h-1zM18,5h1v1h-1zM24,5h1v1h-1zM0,6h1v1h-1zM1,6h1v1h-1zM2,6h1v1h-1zM3,6h1v1h-1zM4,6h1v1h-1zM5,6h1v1h-1zM6,6h1v1h-1zM8,6h1v1h-1zM10,6h1v1h-1zM12,6h1v1h-1zM14,6h1v1h-1zM16,6h1v1h-1zM18,6h1v1h-1zM19,6h1v1h-1zM20,6h1v1h-1zM21,6h1v1h-1zM22,6h1v1h-1zM23,6h1v1h-1zM24,6h1v1h-1zM10,7h1v1h-1zM14,7h1v1h-1zM15,7h1v1h-1zM0,8h1v1h-1zM2,8h1v1h-1zM6,8h1v1h-1zM7,8h1v1h-1zM12,8h1v1h-1zM13,8h1v1h-1zM15,8h1v1h-1zM16,8h1v1h-1zM19,8h1v1h-1zM22,8h1v1h-1zM24,8h1v1h-1zM2,9h1v1h-1zM5,9h1v1h-1zM7,9h1v1h-1zM11,9h1v1h-1zM12,9h1v1h-1zM13,9h1v1h-1zM15,9h1v1h-1zM16,9h1v1h-1zM18,9h1v1h-1zM19,9h1v1h-1zM21,9h1v1h-1zM23,9h1v1h-1zM24,9h1v1h-1zM1,10h1v1h-1zM3,10h1v1h-1zM4,10h1v1h-1zM6,10h1v1h-1zM9,10h1v1h-1zM15,10h1v1h-1zM16,10h1v1h-1zM17,10h1v1h-1zM21,10h1v1h-1zM22,10h1v1h-1zM24,10h1v1h-1zM1,11h1v1h-1zM5,11h1v1h-1zM10,11h1v1h-1zM11,11h1v1h-1zM14,11h1v1h-1zM15,11h1v1h-1zM16,11h1v1h-1zM17,11h1v1h-1zM19,11h1v1h-1zM21,11h1v1h-1zM3,12h1v1h-1zM4,12h1v1h-1zM5,12h1v1h-1zM6,12h1v1h-1zM8,12h1v1h-1zM12,12h1v1h-1zM16,12h1v1h-1zM18,12h1v1h-1zM19,12h1v1h-1zM24,12h1v1h-1zM4,13h1v1h-1zM9,13h1v1h-1zM10,13h1v1h-1zM13,13h1v1h-1zM14,13h1v1h-1zM15,13h1v1h-1zM17,13h1v1h-1zM18,13h1v1h-1zM19,13h1v1h-1zM23,13h1v1h-1zM24,13h1v1h-1zM0,14h1v1h-1zM1,14h1v1h-1zM2,14h1v1h-1zM4,14h1v1h-1zM5,14h1v1h-1zM6,14h1v1h-1zM8,14h1v1h-1zM10,14h1v1h-1zM11,14h1v1h-1zM12,14h1v1h-1zM14,14h1v1h-1zM15,14h1v1h-1zM16,14h1v1h-1zM18,14h1v1h-1zM21,14h1v1h-1zM22,14h1v1h-1zM24,14h1v1h-1zM4,15h1v1h-1zM7,15h1v1h-1zM15,15h1v1h-1zM19,15h1v1h-1zM20,15h1v1h-1zM21,15h1v1h-1zM0,16h1v1h-1zM1,16h1v1h-1zM3,16h1v1h-1zM5,16h1v1h-1zM6,16h1v1h-1zM11,16h1v1h-1zM12,16h1v1h-1zM15,16h1v1h-1zM16,16h1v1h-1zM17,16h1v1h-1zM18,16h1v1h-1zM19,16h1v1h-1zM20,16h1v1h-1zM23,16h1v1h-1zM8,17h1v1h-1zM9,17h1v1h-1zM13,17h1v1h-1zM14,17h1v1h-1zM16,17h1v1h-1zM20,17h1v1h-1zM24,17h1v1h-1zM0,18h1v1h-1zM1,18h1v1h-1zM2,18h1v1h-1zM3,18h1v1h-1zM4,18h1v1h-1zM5,18h1v1h-1zM6,18h1v1h-1zM8,18h1v1h-1zM9,18h1v1h-1zM11,18h1v1h-1zM14,18h1v1h-1zM16,18h1v1h-1zM18,18h1v1h-1zM20,18h1v1h-1zM24,18h1v1h-1zM0,19h1v1h-1zM6,19h1v1h-1zM9,19h1v1h-1zM15,19h1v1h-1zM16,19h1v1h-1zM20,19h1v1h-1zM23,19h1v1h-1zM0,20h1v1h-1zM2,20h1v1h-1zM3,20h1v1h-1zM4,20h1v1h-1zM6,20h1v1h-1zM9,20h1v1h-1zM10,20h1v1h-1zM12,20h1v1h-1zM15,20h1v1h-1zM16,20h1v1h-1zM17,20h1v1h-1zM18,20h1v1h-1zM19,20h1v1h-1zM20,20h1v1h-1zM23,20h1v1h-1zM0,21h1v1h-1zM2,21h1v1h-1zM3,21h1v1h-1zM4,21h1v1h-1zM6,21h1v1h-1zM11,21h1v1h-1zM12,21h1v1h-1zM13,21h1v1h-1zM14,21h1v1h-1zM15,21h1v1h-1zM17,21h1v1h-1zM20,21h1v1h-1zM22,21h1v1h-1zM23,21h1v1h-1zM0,22h1v1h-1zM2,22h1v1h-1zM3,22h1v1h-1zM4,22h1v1h-1zM6,22h1v1h-1zM8,22h1v1h-1zM10,22h1v1h-1zM11,22h1v1h-1zM12,22h1v1h-1zM13,22h1v1h-1zM14,22h1v1h-1zM16,22h1v1h-1zM17,22h1v1h-1zM19,22h1v1h-1zM20,22h1v1h-1zM21,22h1v1h-1zM23,22h1v1h-1zM24,22h1v1h-1zM0,23h1v1h-1zM6,23h1v1h-1zM10,23h1v1h-1zM12,23h1v1h-1zM14,23h1v1h-1zM15,23h1v1h-1zM16,23h1v1h-1zM18,23h1v1h-1zM19,23h1v1h-1zM20,23h1v1h-1zM0,24h1v1h-1zM1,24h1v1h-1zM2,24h1v1h-1zM3,24h1v1h-1zM4,24h1v1h-1zM5,24h1v1h-1zM6,24h1v1h-1zM8,24h1v1h-1zM10,24h1v1h-1zM11,24h1v1h-1zM16,24h1v1h-1zM17,24h1v1h-1zM18,24h1v1h-1zM21,24h1v1h-1zM24,24h1v1h-1z" fill="#000"/></svg>
+          <g id="dimW"></g><g id="dimH"></g>
+        </svg>
+      </div>
+      <div>
+        <p style="margin:0">The card is a program, so its size is a set of numbers. Move the sliders and the drawing, and the scannable QR code, resize with it. The QR opens github.com/Ozzyti.</p>
+        <div class="ctl">
+          <label for="sw">Width<input id="sw" type="range" min="70" max="100" step="0.1" value="88.9"><output id="ow">88.9 mm</output></label>
+          <label for="sh">Height<input id="sh" type="range" min="40" max="60" step="0.1" value="50.8"><output id="oh">50.8 mm</output></label>
+          <label for="sr">Corner radius<input id="sr" type="range" min="0" max="12" step="0.5" value="3"><output id="or">3 mm</output></label>
+        </div>
+        <p class="hint">Printed in black with raised white lettering. Front is the QR code. Back is my name, title and contact details.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <p class="label">Tools</p>
+    <h2>What I work with</h2>
+    <div class="cols">
+      <div>
+        <h3>CAD and printing</h3>
+        <p>Every design is code, and I print on FDM machines.</p>
+        <ul class="chips" aria-label="CAD skills">
+          <li>OpenSCAD</li><li>Parametric design</li><li>Bambu Lab P1S</li><li>Flashforge Adventurer 5M</li><li>Bambu Studio</li><li>FlashPrint</li><li>PLA+ / PETG / TPU</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Software</h3>
+        <p>Python is my main language, and I use C++ at times. I am finishing a Bachelor of Science in Computer Science at Southern New Hampshire University.</p>
+        <ul class="chips" aria-label="Software skills">
+          <li>Python</li><li>C++</li><li>Git</li><li>GitHub</li><li>AI agents</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="repos">
+    <p class="label">On GitHub</p>
+    <h2>Source and models</h2>
+    <a class="repo" href="https://github.com/Ozzyti/Portfolio" target="_blank" rel="noopener"><strong>Ozzyti/Portfolio</strong><p>Project write ups and portfolio pages.</p></a>
+    <a class="repo" href="https://github.com/Ozzyti/3Ddesigns" target="_blank" rel="noopener"><strong>Ozzyti/3Ddesigns</strong><p>OpenSCAD source and printable STL files for my designs.</p></a>
+    <a class="repo" href="https://github.com/Ozzyti" target="_blank" rel="noopener"><strong>github.com/Ozzyti</strong><p>My profile and all public repositories.</p></a>
+  </section>
+
+  <section id="contact" class="last">
+    <div class="cta">
+      <div><p class="label">Contact</p><h2>Need a part designed? Send me what you have.</h2></div>
+      <div class="contact">
+        <span class="addr" id="email">baelyn.k.blackmore112895@outlook.com</span>
+        <button class="copy" id="copy" type="button">Copy email</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="label">Baelyn Blackmore</span>
+    <span class="label">Sheet 1 of 1</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  /* copy email */
+  var btn=document.getElementById('copy'),el=document.getElementById('email');
+  btn.addEventListener('click',function(){
+    var t=el.textContent.trim();
+    function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy email'},1800)}
+    function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected, press copy'}
+    try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}
+  });
+
+  /* theme toggle */
+  var root=document.documentElement,tb=document.getElementById('theme');
+  try{var saved=localStorage.getItem('theme');if(saved)root.setAttribute('data-theme',saved)}catch(e){}
+  tb.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next)}catch(e){}
+  });
+
+  /* parametric card */
+  var S=3,CX=180,CY=120,NS='http://www.w3.org/2000/svg';
+  var sw=document.getElementById('sw'),sh=document.getElementById('sh'),sr=document.getElementById('sr');
+  var rect=document.getElementById('cardRect'),qr=document.getElementById('qr'),qbg=document.getElementById('qrBg'),
+      lines=document.getElementById('lines'),dw=document.getElementById('dimW'),dh=document.getElementById('dimH');
+  function mk(tag,a,txt){var e=document.createElementNS(NS,tag);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e}
+  function draw(){
+    var w=+sw.value,h=+sh.value,r=+sr.value,pw=w*S,ph=h*S,x=CX-pw/2,y=CY-ph/2;
+    document.getElementById('ow').textContent=w.toFixed(1)+' mm';
+    document.getElementById('oh').textContent=h.toFixed(1)+' mm';
+    document.getElementById('or').textContent=r+' mm';
+    rect.setAttribute('x',x);rect.setAttribute('y',y);rect.setAttribute('width',pw);rect.setAttribute('height',ph);rect.setAttribute('rx',r*S);
+    var q=Math.min(ph*.66,pw*.4),qx=x+pw-q-ph*.12-r*S*.2,qy=CY-q/2;
+    qr.setAttribute('x',qx);qr.setAttribute('y',qy);qr.setAttribute('width',q);qr.setAttribute('height',q);
+    qbg.setAttribute('x',qx-3);qbg.setAttribute('y',qy-3);qbg.setAttribute('width',q+6);qbg.setAttribute('height',q+6);
+    var lx=x+ph*.14,lw=Math.max(40,qx-lx-ph*.14);
+    lines.innerHTML='';
+    lines.appendChild(mk('rect',{x:lx,y:CY-ph*.22,width:lw*.8,height:ph*.07}));
+    lines.appendChild(mk('rect',{x:lx,y:CY-ph*.06,width:lw,height:ph*.035}));
+    lines.appendChild(mk('rect',{x:lx,y:CY+ph*.04,width:lw*.86,height:ph*.035}));
+    lines.appendChild(mk('rect',{x:lx,y:CY+ph*.14,width:lw*.7,height:ph*.035}));
+    dw.innerHTML='';dh.innerHTML='';
+    var by=y+ph+14;
+    dw.appendChild(mk('line',{x1:x,y1:by,x2:x+pw,y2:by,class:'dwg-dim'}));
+    dw.appendChild(mk('line',{x1:x,y1:by-5,x2:x,y2:by+5,class:'dwg-dim'}));
+    dw.appendChild(mk('line',{x1:x+pw,y1:by-5,x2:x+pw,y2:by+5,class:'dwg-dim'}));
+    dw.appendChild(mk('text',{x:CX,y:by+14,'text-anchor':'middle',class:'dwg-txt'},w.toFixed(1)));
+    var bx=x+pw+14;
+    dh.appendChild(mk('line',{x1:bx,y1:y,x2:bx,y2:y+ph,class:'dwg-dim'}));
+    dh.appendChild(mk('line',{x1:bx-5,y1:y,x2:bx+5,y2:y,class:'dwg-dim'}));
+    dh.appendChild(mk('line',{x1:bx-5,y1:y+ph,x2:bx+5,y2:y+ph,class:'dwg-dim'}));
+    dh.appendChild(mk('text',{x:bx+4,y:CY,'text-anchor':'middle',class:'dwg-txt',transform:'rotate(90 '+(bx+4)+' '+CY+')'},h.toFixed(1)));
+  }
+  [sw,sh,sr].forEach(function(i){i.addEventListener('input',draw)});
+  draw();
+})();
+</script>
+
+</body>
+</html>
