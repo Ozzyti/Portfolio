@@ -6,9 +6,10 @@ Parametric design in OpenSCAD, FDM printing on a Bambu Lab P1S and a Flashforge 
 
 ## Modular click lock shelving
 
-Holds at least 30 lb across an unsupported 16 inch span, matching US stud spacing. Panels join at each seam with printed click lock keys.
+Held 81 lb for over 6 hours. Carries 30 lb comfortably, and has held about 15 lb for the past 2 weeks. Built for an unsupported 16 inch span, matching US stud spacing. Panels join at each seam with printed click lock keys.
 
-![Shelving](page-1.png)
+![Three cases of water on the shelf](images/shelf_water.jpg)
+![Scale reading 81.6 lb](images/shelf_scale.jpg)
 
 ## Aquarium light holder (client work)
 
